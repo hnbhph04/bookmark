@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}북마크 리스트{% endblock %}
+
+{% block content %}
+    <div class="btn-group">
+        <a href="{% url 'add' %}" class="btn btn-info">Bookmark 추가</a>
+    </div>
+
+    <p>
+
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Site</th>
+            <th scope="col">URL</th>
+            <th scope="col">Modify</th>
+            <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- for문 안에서 forloop.counter를 사용하면  -->
+            <!-- 순회하는 순서를 1부터 시작해서 사용할 수 있다.  -->
+            <!-- 순회하는 순서를 0부터 사용하려면 forloop.counter0을 사용하면 된다. -->
+
+            {% for bookmark in object_list %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><a href="{% url 'detail' pk=bookmark.id %}">{{bookmark.site_name}}</a></td>
+                    <td><a href="{{bookmark.url}}" target="_blank">{{bookmark.url}}</a></td>
+                    <td><a href="{% url 'update' pk=bookmark.id %}" class="btn btn-success btn-sm">수정</a></td>
+                    <td><a href="{% url 'delete' pk=bookmark.id %}" class="btn btn-danger btn-sm">삭제</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}북마크 신규등록{% endblock %}
+
+{% block content %}
+    <!-- CSRF 공격에 대한 사용하기 쉬운 보호 기능을 제공 -->
+    <!-- {{form.as_table}} -->
+    <!-- {{form.as_ul}} -->
+    <!-- {{form.as_p}} -->
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="등록" class="btn btn-info btn-sm">
+    </form>
+    
+{% endblock %}
